@@ -1,0 +1,5 @@
+*.zip
+*.patch
+*.patch.gpg
+node_modules
+.textlintcache
