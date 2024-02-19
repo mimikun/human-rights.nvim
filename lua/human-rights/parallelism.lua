@@ -2,7 +2,9 @@ local M = {}
 
 function M.show_parallelism()
     local uv = vim.uv and vim.uv or vim.loop
-    print(uv.available_parallelism())
+    ---@type number
+    local parallelism = uv.available_parallelism()
+    print(parallelism)
 end
 
 return M
