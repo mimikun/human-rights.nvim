@@ -28,5 +28,27 @@ A neovim plugin to check and display whether your machine have **human rights**.
 #### lazy.nvim
 
 ```lua
-{ "mimikun/human-rights.nvim" }
+{
+    "mimikun/human-rights.nvim",
+    -- default
+    opts = {
+        cpu = {
+            "Ryzen 9 7950X",
+            "i9-14900K",
+        },
+        memory = {
+            -- 31GB
+            linux = 33285996544,
+            -- 31GB
+            windows = 33285996544,
+        },
+        parallelism = 24,
+        -- No one really uses HDDs, right?
+        disk = "SSD",
+    },
+}
 ```
+
+## TODO
+
+- [ ] Add check human rights feature
