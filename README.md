@@ -5,13 +5,14 @@ A neovim plugin to check and display whether your machine have **human rights**.
 ## Features
 
 - Show system information
-  - CPU, Memory, Parallelism, Disk
+  - CPU, GPU, Memory, Parallelism, Disk
 - Check human rights
   - TRUE or FALSE
 
 ### Commands
 
 - `ShowCpu` to Show CPU information
+- `ShowGpu` to Show GPU information
 - `ShowMemory` to Show Memory size
 - `ShowParallelism` to Show vim.uv.available_parallelism()
 - `ShowDisk` to Show disk type(HDD or SSD)
@@ -36,6 +37,9 @@ A neovim plugin to check and display whether your machine have **human rights**.
             "Ryzen 9 7950X",
             "i9-14900K",
         },
+        gpu = {
+            "RTX 4090",
+        }
         memory = {
             -- 31GB
             linux = 33285996544,

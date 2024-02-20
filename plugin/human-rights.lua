@@ -8,6 +8,10 @@ vim.api.nvim_create_user_command("ShowCpu", function()
     hm.show_cpu()
 end, { desc = "Show CPU information" })
 
+vim.api.nvim_create_user_command("ShowGpu", function()
+    hm.show_gpu()
+end, { desc = "Show GPU information" })
+
 vim.api.nvim_create_user_command("ShowMemory", function()
     hm.show_memory()
 end, { desc = "Show Memory size" })

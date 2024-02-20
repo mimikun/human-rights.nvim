@@ -1,4 +1,5 @@
 local cpu = require("human-rights.cpu")
+local gpu = require("human-rights.gpu")
 local memory = require("human-rights.memory")
 local parallelism = require("human-rights.parallelism")
 local disk = require("human-rights.disk")
@@ -8,6 +9,9 @@ local DEFAULT_HUMAN_RIGHTS = {
     cpu = {
         "Ryzen 9 7950X",
         "i9-14900K",
+    },
+    gpu = {
+        "RTX 4090",
     },
     memory = {
         -- 31GB
@@ -23,6 +27,7 @@ local M = {}
 M.human_rights = DEFAULT_HUMAN_RIGHTS
 
 M.show_cpu = cpu.show_cpu
+M.show_gpu = cpu.show_gpu
 M.show_memory = memory.show_memory
 M.show_parallelism = parallelism.show_parallelism
 M.show_disk = disk.show_disk
