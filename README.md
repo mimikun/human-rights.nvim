@@ -5,7 +5,7 @@ A neovim plugin to check and display whether your machine have **human rights**.
 ## Features
 
 - Show system information
-  - CPU, GPU, Memory, Parallelism, Disk
+  - CPU, GPU, Memory, Parallelism and Disk
 - Check human rights
   - TRUE or FALSE
 
