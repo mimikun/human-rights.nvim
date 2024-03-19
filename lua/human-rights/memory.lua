@@ -1,10 +1,15 @@
 local M = {}
 
+local uv = vim.uv and vim.uv or vim.loop
+---@type number
+M.total_memory = uv.get_total_memory()
+
 function M.show_memory()
-    local uv = vim.uv and vim.uv or vim.loop
-    ---@type number
-    local total_memory = uv.get_total_memory()
-    print(total_memory)
+    print(M.total_memory)
+end
+
+function M.check_memory()
+    return false
 end
 
 return M

@@ -27,10 +27,16 @@ local M = {}
 M.human_rights = DEFAULT_HUMAN_RIGHTS
 
 M.show_cpu = cpu.show_cpu
-M.show_gpu = cpu.show_gpu
+M.show_gpu = gpu.show_gpu
 M.show_memory = memory.show_memory
 M.show_parallelism = parallelism.show_parallelism
 M.show_disk = disk.show_disk
+
+M.check_cpu = cpu.check_cpu
+M.check_gpu = gpu.check_gpu
+M.check_memory = memory.check_memory
+M.check_parallelism = parallelism.check_parallelism
+M.check_disk = disk.check_disk
 
 function M.setup(opts)
     if opts and opts.human_rights then

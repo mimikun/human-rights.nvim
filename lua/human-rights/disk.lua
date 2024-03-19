@@ -4,38 +4,47 @@ local uv = vim.uv and vim.uv or vim.loop
 ---@type string
 local os_name = uv.os_uname().sysname
 
----@type string
+---@type boolean
 local is_windows = os_name == "Windows_NT"
----@type string
+---@type boolean
 local is_mac = os_name == "Darwin"
 
-function M.show_disk()
+if is_windows then
+    -- Windows
+    -- NOTE: VERY SLOW
+
     ---@type string
-    local media_type
-    if is_windows then
-        -- Windows
-        -- NOTE: VERY SLOW
+    local raw_cmd = "(Get-PhysicalDisk | Select-Object MediaType).MediaType"
+    ---@type string
+    local pwsh_cmd = 'pwsh.exe -Command "' .. raw_cmd .. '"'
 
-        ---@type string
-        local raw_cmd = "(Get-PhysicalDisk | Select-Object MediaType).MediaType"
-        ---@type string
-        local pwsh_cmd = 'pwsh.exe -Command "' .. raw_cmd .. '"'
+    ---@type string
+    local tmp = vim.fn.system(pwsh_cmd)
+    M.media_type = string.gsub(tmp, "%s+", "")
+elseif is_mac then
+    -- Mac
+    M.media_type = "Mac"
+else
+    -- Linux
+    ---@type table
+    local lsblk_result = vim.fn.systemlist("lsblk -o ROTA | sed -e 's/\\s//g' | sed '/ROTA/d' | uniq")
+    ---@type string
+    local tmp = lsblk_result[1]
+    M.media_type = tmp == "1" and "HDD" or "SSD"
+end
 
-        ---@type string
-        local tmp = vim.fn.system(pwsh_cmd)
-        media_type = string.gsub(tmp, "%s+", "")
-    elseif is_mac then
-        -- Mac
-        media_type = "Mac"
+function M.show_disk()
+    print(M.media_type)
+end
+
+---@return boolean
+function M.check_disk()
+    local mt = M.media_type
+    if mt == "SSD" then
+        return true
     else
-        -- Linux
-        ---@type table
-        local lsblk_result = vim.fn.systemlist("lsblk -o ROTA | sed -e 's/\\s//g' | sed '/ROTA/d' | uniq")
-        ---@type string
-        local tmp = lsblk_result[1]
-        media_type = tmp == "1" and "HDD" or "SSD"
+        return false
     end
-    print(media_type)
 end
 
 return M
